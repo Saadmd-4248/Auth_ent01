@@ -4,29 +4,20 @@ import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "../icons";
 import Label from "./Label";
 import Input from "./inputField";
 import Checkbox from "./Checkbox";
-// import Button from "./Button";
 
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   return (
-    <div className="flex flex-col flex-1">
-      <div className="w-full max-w-md pt-10 mx-auto">
-        <Link
-          to="/"
-          className="inline-flex items-center text-sm text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
-        >
-          <ChevronLeftIcon className="size-5" />
-          Back to dashboard
-        </Link>
-      </div>
+    <div className="flex w-full lg:w-1/2 no-scrollbar items-center justify-center h-screen">
+
       <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
         <div>
           <div className="mb-5 sm:mb-8">
-            <h1 className="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md">
-              Sign In
+            <h1 className="mb-2 font-bold text-gray-800 text-4xl dark:text-white/90 sm:text-title-md">
+              Welcome back!
             </h1>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-md text-gray-500 dark:text-gray-400">
               Enter your email and password to sign in!
             </p>
           </div>
@@ -120,7 +111,7 @@ export default function SignInForm() {
                     </span>
                   </div>
                   <Link
-                    to="/reset-password"
+                    // to="/reset-password"
                     className="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
                   >
                     Forgot password?
@@ -138,7 +129,7 @@ export default function SignInForm() {
               <p className="text-sm font-normal text-center text-gray-700 dark:text-gray-400 sm:text-start">
                 Don't have an account? {""}
                 <Link
-                  to="/signup"
+                  to="/"
                   className="text-brand-500 hover:text-brand-600 dark:text-brand-400"
                 >
                   Sign Up
