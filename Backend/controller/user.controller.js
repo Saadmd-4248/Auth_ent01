@@ -1,6 +1,7 @@
 import userModel from '../model/user.model.js'
 import jwt from "jsonwebtoken";
 import bcrypt from 'bcryptjs'
+import transporter from '../config/nodemailer.js';
 
 
 export const createUser = async (req, res) => {
@@ -43,6 +44,42 @@ export const createUser = async (req, res) => {
       'none' : 'strict',
       maxAge: 7 * 24 * 60 * 1000
     });
+    
+    const mailOptions = {
+      from: process.env.SENDER_EMAIL,
+      to: email,
+      subject: 'Welcome to Our Website!',
+      html: `
+        <div style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 40px;">
+          <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <div style="background-color: #4f46e5; padding: 20px 30px;">
+              <h2 style="color: #ffffff; margin: 0;">Welcome to Our Website 🎉</h2>
+            </div>
+            <div style="padding: 30px;">
+              <p style="font-size: 16px; color: #333333;">Assalamualaikum 👋,</p>
+              <p style="font-size: 16px; color: #333333;">
+                Aapka account successfully create ho chuka hai is email address se:
+              </p>
+              <p style="font-size: 18px; color: #4f46e5; font-weight: bold; margin: 10px 0;">
+                ${email}
+              </p>
+              <p style="font-size: 16px; color: #333333;">
+                Agar aapne ye account nahi banaya to barah-e-karam foran humse raabta karein.
+              </p>
+              <div style="margin-top: 30px;">
+                <a href="https://yourwebsite.com" style="display: inline-block; padding: 12px 20px; background-color: #4f46e5; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                  Visit Website
+                </a>
+              </div>
+            </div>
+            <div style="background-color: #f0f0f0; text-align: center; padding: 15px; font-size: 14px; color: #666;">
+              This email was sent by Our Website • <a href="https://yourwebsite.com" style="color: #4f46e5;">ourwebsite.com</a>
+            </div>
+          </div>
+        </div>
+      `
+    }
+    await transporter.sendMail(mailOptions);
 
     return res.status(201).json({
       success: true,
