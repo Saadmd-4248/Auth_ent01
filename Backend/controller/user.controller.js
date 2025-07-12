@@ -345,3 +345,20 @@ export const verifyEmail = async (req, res) => {
     });
   }
 }
+
+export const isAuthenticated = async (req, res) => {
+  try {
+    
+   return res.status(201).json({
+    success: true,
+    message: 'Successfully Authenticated!'
+   })
+
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
+}
