@@ -200,6 +200,7 @@ export const logout = async (req, res) => {
   }
 };
 
+// send otp on email
 export const verifyOTP = async (req, res) => {
   try {
     const { userId } = req.body;
@@ -290,6 +291,7 @@ export const verifyOTP = async (req, res) => {
   }
 };
 
+// check otp
 export const verifyEmail = async (req, res) => {
   try {
     
@@ -345,7 +347,7 @@ export const verifyEmail = async (req, res) => {
     });
   }
 }
-
+// check the user is authenticated
 export const isAuthenticated = async (req, res) => {
   try {
     
@@ -353,6 +355,29 @@ export const isAuthenticated = async (req, res) => {
     success: true,
     message: 'Successfully Authenticated!'
    })
+
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
+}
+
+// Send password reset otp
+export const sendResetOtp = async (req, res) => {
+  try {
+    const {email} = req.body;
+    
+    if(!email) {
+      return res.status(400).json({
+        success: false,
+        message: 'Email is required!'
+      });
+      
+    }
+
 
   } catch (error) {
     return res.status(500).json({
