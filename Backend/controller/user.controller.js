@@ -200,7 +200,7 @@ export const logout = async (req, res) => {
   }
 };
 
-export const sendOTP = async (req, res) => {
+export const verifyOTP = async (req, res) => {
   try {
     const { userId } = req.body;
     console.log(userId)
